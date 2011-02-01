@@ -15,7 +15,7 @@ if (isset($_GET['f']) && !empty($_GET['f'])) {
 	}
 	else {
 		$filesize = 0;
-		$destcount = count(glob($target . $suffix));
+		$destcount = count(glob($target . $patternsufix));
 		if ($destcount > 0 && $destcount < pow(10, constant('DIGITS'))) {
 			// remember, use only for files < 4 GiB
 			for ($i = 1; $i <= $destcount; $i++) {

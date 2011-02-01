@@ -7,7 +7,8 @@ define('DIGITS', 3);
 // used in index.php. Change this e.g. if you have a pretty mod_rewrite setup
 define('GET_PREFIX', 'get.php?f=');
 
-$suffix = '.'; for ($i = 0; $i < constant('DIGITS'); $i++) $suffix .= '[0-9]';
+// suffix for glob()-ing files
+$patternsufix = '.'; for ($i = 0; $i < constant('DIGITS'); $i++) $patternsufix .= '[0-9]';
 // suffix of first chunk
 $firstsuffix = '.'; for ($i = 1; $i < constant('DIGITS'); $i++) $firstsuffix .= '0'; $firstsuffix .= '1';
 
