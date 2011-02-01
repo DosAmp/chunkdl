@@ -4,9 +4,14 @@ require('constants.php');
 
 if (isset($_GET['f']) && !empty($_GET['f'])) {
 	$target = preg_replace('[^A-Za-z0-9.\-_]', '', $_GET['f']);
+	/* XXX: it's pretty valid to have index.php.* files, this is only here
+	 * to confuse script kiddies */
 	if ($target == 'index.php')
-			header('HTTP/1.0 403 Forbidden');
+		header('HTTP/1.0 403 Forbidden');
 	elseif (empty($target)) {
+		header('HTTP/1.0 404 Not Found');
+		header('Content-Type: text/plain; charset=utf-8');
+		echo "ERROR: File name invalid";
 	}
 	else {
 		$filesize = 0;
