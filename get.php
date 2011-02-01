@@ -17,6 +17,9 @@ if (isset($_GET['f']) && !empty($_GET['f'])) {
 		$filesize = 0;
 		$destcount = count(glob($target . $patternsufix));
 		if ($destcount > 0 && $destcount < pow(10, constant('DIGITS'))) {
+			// XXX: preliminary solution until ranges are implemented
+			header('Accept-Ranges: none');
+
 			// remember, use only for files < 4 GiB
 			for ($i = 1; $i <= $destcount; $i++) {
 				$destination = $target . sprintf('.%0' . strval(constant('DIGITS')) . 'u', $i);
