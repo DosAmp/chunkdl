@@ -1,0 +1,4 @@
+# demonstration files
+*.0*
+# backup files
+*~

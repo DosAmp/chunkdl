@@ -1,0 +1,6 @@
+- translate German variable names in get.php
+- add a license file
+- support ranges (a bit complicated, send 'Accept-Ranges: none' until then)
+- support If-Modified-Since (simply use mdate of first chunk for this)
+- get all the HTML out of index.php and put it in a separated template
+- support Unicodes filenames using mbstring functions

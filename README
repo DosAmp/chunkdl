@@ -1,0 +1,14 @@
+chunkdl - Download split files as a whole
+
+These scripts were written in order to circumvent file size restrictions many
+free webhosters impose on their plans to limit traffic and prevent users from
+storing large amounts of non-website data, which is inconvenient if you want
+to offer just a few files that are over the limit.
+That said, please use there scripts to do good, not evil.
+
+Your PHP installation needs to support readfile() and Perl-compatible Regular
+Expressions (PCRE) -- most do so.
+
+Note that the maximum chunk size (and therefore total file size) is not only
+limited by disk quotas, but also by the PHP memory limit and, to a lesser
+degree, by the maximum script execution time.

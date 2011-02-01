@@ -1,0 +1,13 @@
+# prevent raw chunks from being fetched
+<FilesMatch "\.[0-9]+$">
+	Order allow,deny
+	Deny from all
+	Satisfy All
+</FilesMatch>
+
+# simple mod_rewrite example
+# use define('GET_PREFIX', '') in constants.php with this
+#<IfModule mod_rewrite>
+#RewriteEngine On
+#RewriteRule /chunkdl/([^/]*)$ /chunkdl/get.php?f=$1 [L]
+#</IfModule>
