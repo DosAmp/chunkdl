@@ -17,28 +17,28 @@ $urlpath = htmlspecialchars($urlpath); $parentpath = htmlspecialchars($parentpat
 echo <<<EOF
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-	<head>
-		<title>Index of
+<head>
+	<title>Index of
 EOF;
 echo ' ' . $urlpath . "</title>\n";
 echo <<<EOF
-	</head>
-	<body>
-		<h1>Index of 
+</head>
+<body>
+	<h1>Index of 
 EOF;
-echo $urlpath . "</h1>\n\t\t<ul>\n";
+echo $urlpath . "</h1>\n\t<ul>\n";
 if ($urlpath != $parentpath) // == '/'
-	echo "\t\t\t<li><a href=\"" . $parentpath . "\">Parent Directory</a></li>\n";
+	echo "\t\t<li><a href=\"" . $parentpath . "\">Parent Directory</a></li>\n";
 
 $thefiles = glob('*' . $firstsuffix);
 foreach ($thefiles as &$file) {
 	$file = substr($file, 0, strlen($file) - strlen($firstsuffix));
 	// TODO: provide a shortened file name so that the line fits well on a 80-column terminal
-	echo "\t\t\t<li><a href=\"" . constant('GET_PREFIX') . $file . '">' . $file . "</a></li>\n";
+	echo "\t\t<li><a href=\"" . constant('GET_PREFIX') . $file . '">' . $file . "</a></li>\n";
 }
 unset($file);
 
 // Phew, we're almost done, just the footer...
 // TODO: implement the "at <server hostname> port $_SERVER['SERVER_PORT']" part
-echo "\t\t</ul>\n\t\t<address>" . $_SERVER['SERVER_SOFTWARE'] . "</address>\n\t</body>\n</html>";
+echo "\t</ul>\n\t<address>" . $_SERVER['SERVER_SOFTWARE'] . "</address>\n</body>\n</html>\n";
 ?>
