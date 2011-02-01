@@ -3,36 +3,36 @@
 require('constants.php');
 
 if (isset($_GET['f']) && !empty($_GET['f'])) {
-	$zieldatei = preg_replace('[^A-Za-z0-9.\-_]', '', $_GET['f']);
-	if ($zieldatei == 'index.php')
+	$target = preg_replace('[^A-Za-z0-9.\-_]', '', $_GET['f']);
+	if ($target == 'index.php')
 			header('HTTP/1.0 403 Forbidden');
-	elseif (empty($zieldatei)) {
+	elseif (empty($target)) {
 	}
 	else {
 		$filesize = 0;
-		$quellanzahl = count(glob($zieldatei . $suffix));
-		if ($quellanzahl > 0 && $quellanzahl < pow(10, constant('DIGITS'))) {
+		$destcount = count(glob($target . $suffix));
+		if ($destcount > 0 && $destcount < pow(10, constant('DIGITS'))) {
 			// remember, use only for files < 4 GiB
-			for ($i = 1; $i <= $quellanzahl; $i++) {
-				$quelldatei = $zieldatei . sprintf('.%0' . strval(constant('DIGITS')) . 'u', $i);
-				if (file_exists($quelldatei) && filesize($quelldatei)) $filesize += filesize($quelldatei);
+			for ($i = 1; $i <= $destcount; $i++) {
+				$destination = $target . sprintf('.%0' . strval(constant('DIGITS')) . 'u', $i);
+				if (file_exists($destination) && filesize($destination)) $filesize += filesize($destination);
 			}
 			header('Content-Length: ' . strval($filesize));
 
-			if (strrpos($zieldatei, '.') === null)
+			if (strrpos($target, '.') === null)
 				// don't really know what to do with extensionless files
 				header('Content-Type: application/force-download');
 			else {
-				$ext = strtolower(substr($zieldatei, strrpos($zieldatei, '.')));
+				$ext = strtolower(substr($target, strrpos($target, '.')));
 				if (isset($contenttypes[$ext])) header('Content-Type: ' . $contenttypes[$ext]);
 				// explicit fallback also for executable files (.exe, .class etc.)
 				else header('Content-Type: application/octet-stream');
 			}
 
-			header('Content-Disposition: attachment; filename="' . $zieldatei . '"');
-			for ($i = 1; $i <= $quellanzahl; $i++) {
-				$quelldatei = $zieldatei . sprintf('.%0' . strval(constant('DIGITS')) . 'u', $i);
-				if (file_exists($quelldatei)) @readfile($quelldatei);
+			header('Content-Disposition: attachment; filename="' . $target . '"');
+			for ($i = 1; $i <= $destcount; $i++) {
+				$destination = $target . sprintf('.%0' . strval(constant('DIGITS')) . 'u', $i);
+				if (file_exists($destination)) @readfile($destination);
 			}
 		}
 		else {

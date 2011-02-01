@@ -1,4 +1,3 @@
-- translate German variable names in get.php
 - add a license file
 - support ranges (a bit complicated, send 'Accept-Ranges: none' until then)
 - support If-Modified-Since (simply use mdate of first chunk for this)
