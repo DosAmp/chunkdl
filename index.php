@@ -11,7 +11,7 @@ else $parentpath = substr($urlpath, 0, strrpos($urlpath, '/'));
 // in case there are *really* special chars in the paths
 $urlpath = htmlspecialchars($urlpath); $parentpath = htmlspecialchars($parentpath);
 
-/* TODO?: Do we need a header with charset here - even all of this should be plain ASCII?
+/* TODO?: Do we need a charset header here - even if all of this is plain ASCII?
  * If so, we still could look for an Accept-Charset header and simply just that if it's
  * 7-bit compatible to ASCII. */
 echo <<<EOF
@@ -31,12 +31,14 @@ if ($urlpath != $parentpath) // == '/'
 	echo "\t\t<li><a href=\"" . $parentpath . "\">Parent Directory</a></li>\n";
 
 $thefiles = glob('*' . $firstsuffix);
-foreach ($thefiles as &$file) {
-	$file = substr($file, 0, strlen($file) - strlen($firstsuffix));
-	// TODO: provide a shortened file name so that the line fits well on a 80-column terminal
-	echo "\t\t<li><a href=\"" . constant('GET_PREFIX') . $file . '">' . $file . "</a></li>\n";
+if ($thefiles && !empty($thefiles)) {
+	foreach ($thefiles as &$file) {
+		$file = substr($file, 0, strlen($file) - strlen($firstsuffix));
+		// TODO: provide a shortened file name so that the line fits well on a 80-column terminal
+		echo "\t\t<li><a href=\"" . constant('GET_PREFIX') . $file . '">' . $file . "</a></li>\n";
+	}
+	unset($file);
 }
-unset($file);
 
 // Phew, we're almost done, just the footer...
 // TODO: implement the "at <server hostname> port $_SERVER['SERVER_PORT']" part
