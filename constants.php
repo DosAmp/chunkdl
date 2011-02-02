@@ -4,7 +4,8 @@
 /* How many digits should every suffix have? (default is three digits, e.g. .001, .002...)
  * Three is recommended because of many splitting tools' default setting. ;) */
 define('DIGITS', 3);
-// used in index.php. Change this e.g. if you have a pretty mod_rewrite setup
+/* used in index.php. Change this if you have a pretty mod_rewrite setup
+ * (see .htaccess for an example) */
 define('GET_PREFIX', 'get.php?f=');
 
 // suffix for glob()-ing files

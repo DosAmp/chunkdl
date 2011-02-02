@@ -6,8 +6,8 @@
 </FilesMatch>
 
 # simple mod_rewrite example
-# use define('GET_PREFIX', '') in constants.php with this
+# use define('GET_PREFIX', 'dl/') in constants.php with this
 #<IfModule mod_rewrite>
-#RewriteEngine On
-#RewriteRule /chunkdl/([^/]*)$ /chunkdl/get.php?f=$1 [L]
+#	RewriteEngine on
+#	RewriteRule ^dl/(.+)$ get.php?f=$1
 #</IfModule>
