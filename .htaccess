@@ -9,5 +9,6 @@
 # use define('GET_PREFIX', 'dl/') in constants.php with this
 #<IfModule mod_rewrite>
 #	RewriteEngine on
+#	RewriteBase /chunkdl # change to chunkdl path, relative to document root
 #	RewriteRule ^dl/(.+)$ get.php?f=$1
 #</IfModule>
